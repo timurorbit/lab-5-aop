@@ -1,10 +1,11 @@
 package com.luxoft.springaop.lab5.model;
 
+import javax.xml.bind.ValidationException;
 import java.util.List;
 
 public interface Person {
 	public void setIsProgrammer(boolean isProgrammer);
-	public void setAge(int age);
+	public void setAge(int age) throws ValidationException;
 	public void setHeight(float height);
 	public void setName(String name);
 	public String getName();

@@ -7,6 +7,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.luxoft.springaop.lab5.model.Person;
 
+import javax.xml.bind.ValidationException;
+
 public class AspectsTest {
 	
 	protected static final String APPLICATION_CONTEXT_XML_FILE_NAME = "application-context.xml";
@@ -20,28 +22,28 @@ public class AspectsTest {
 	}
 	
 	@Test
-	public void testLogging() {
+	public void testLogging() throws ValidationException {
 		Person person = (Person) context.getBean("person");
 		person.setAge(50);
 	}
 
-	//@Test(expected=ValidationException.class)
-	public void testValidation() {
+	@Test(expected= ValidationException.class)
+	public void testValidation() throws ValidationException {
 		Person person = (Person) context.getBean("person");
 		person.setAge(101);
 		System.out.println(person);
 	}
 
-	/*
+
 	@Test
 	public void testValidationException() {
 		try {
 			Person person = (Person) context.getBean("person");
 			person.setAge(101);
 		} catch(ValidationException e) {
-			System.out.println("Validation exception occured!");
+			System.out.println("Validation exception occurred!");
 		}
 	}
-	*/
+
 
 }
